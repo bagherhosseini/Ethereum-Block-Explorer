@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethereum Block Explorer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Ethereum Block Explorer</h1>
+        <div id="network-status">
+            <span>Network: </span>
+            <span id="network-name">Sepolia</span>
+            <span id="connection-status"></span>
+            <button id="connect-wallet-btn">Connect Wallet</button>
+        </div>
+    </header>
+
+    <main id="main-content" class="disconnected">
+        <section id="balance-section" class="explorer-section">
+            <h2>Check Account Balance</h2>
+            <div class="input-group">
+                <input type="text" id="address-input" placeholder="Enter Ethereum address (0x...)" maxlength="42">
+                <button id="check-balance-btn">Check Balance</button>
+            </div>
+            <div id="balance-result" class="result-display">
+                <p>Balance: <span id="eth-balance">-</span> ETH</p>
+            </div>
+        </section>
+
+        <section id="transaction-section" class="explorer-section">
+            <h2>Create Transaction</h2>
+            <form id="transaction-form">
+                <div class="input-group">
+                    <label for="to-address">To Address:</label>
+                    <input type="text" id="to-address" placeholder="Recipient address (0x...)" maxlength="42" required>
+                </div>
+                <div class="input-group">
+                    <label for="amount">Amount (ETH):</label>
+                    <input type="number" id="amount" placeholder="0.0" step="0.000000000000000001" min="0" required>
+                </div>
+                <button type="submit" id="send-transaction-btn">Send Transaction</button>
+            </form>
+            <div id="transaction-result" class="result-display">
+                <p>Transaction Status: <span id="transaction-status">-</span></p>
+                <p>Transaction Hash: <span id="transaction-hash">-</span></p>
+            </div>
+        </section>
+
+        <section id="blockchain-section" class="explorer-section">
+            <h2>Blockchain Information</h2>
+            <div class="info-group">
+                <button id="block-count-btn">Get Block Count</button>
+                <p>Total Blocks: <span id="block-count">-</span></p>
+            </div>
+        </section>
+    </main>
+
+    <div id="notification" class="notification hidden">
+        <span id="notification-message"></span>
+        <button id="notification-close">&times;</button>
+    </div>
+
+    <div id="loading-overlay" class="hidden">
+        <div class="loader"></div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
